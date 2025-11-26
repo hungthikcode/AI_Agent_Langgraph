@@ -1,0 +1,13 @@
+# --- BẢO MẬT ---
+.env
+config.json
+
+# --- FILE RÁC HỆ THỐNG ---
+__pycache__/
+*.py[cod]
+*.spec
+.DS_Store
+
+# --- ẨN MODEL NẶNG (Theo yêu cầu) ---
+models/Vietnamese_Embedding/
+

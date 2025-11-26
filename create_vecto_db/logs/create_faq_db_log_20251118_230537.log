@@ -1,0 +1,6 @@
+2025-11-18 23:05:37,043 - INFO - === Logger initialized ===
+2025-11-18 23:05:37,044 - INFO - Đang đọc dữ liệu từ: C:/Users/admin/Desktop/Chatbot_Data4Life/v1/create_vecto_db/faqs.csv
+2025-11-18 23:05:37,390 - INFO - Đọc và chuẩn bị thành công 9452 bản ghi FAQ.
+2025-11-18 23:05:37,390 - INFO - Đang tải mô hình embedding từ: C:/Users/admin/Desktop/Chatbot_Data4Life/v1/models/Vietnamese_Embedding...
+2025-11-18 23:05:37,393 - INFO - Use pytorch device_name: cpu
+2025-11-18 23:05:37,393 - INFO - Load pretrained SentenceTransformer: C:/Users/admin/Desktop/Chatbot_Data4Life/v1/models/Vietnamese_Embedding

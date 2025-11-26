@@ -1,0 +1,10 @@
+tools:
+      - name: search_project_documents
+        description: "Tìm kiếm dữ liệu nội bộ theo từ khóa."
+        parameters:
+          query:
+            type: string
+            required: true
+            description: "Chuỗi truy vấn hoặc từ khóa mô tả thông tin cần tìm"
+            example: "doanh thu Q2 2025 khu vực VN"
+        returns: "Danh sách bản ghi phù hợp"

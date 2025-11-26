@@ -1,0 +1,27 @@
+/* 1. Xóa khoảng trắng trên cùng của Sidebar */
+[data-testid="stSidebar"] .block-container {
+    padding-top: -1rem !important; /* Mặc định là khoảng 5-6rem, chỉnh về 1rem hoặc 0rem */
+}
+
+/* 2. (Tùy chọn) Xóa khoảng trắng trên cùng của Main Content (phần chat bên phải) */
+[data-testid="stAppViewContainer"] .block-container {
+    padding-top: 4rem !important;
+}
+
+/* Target riêng các nút bấm nằm trong Sidebar */
+[data-testid="stSidebar"] .stButton > button {
+    width: 95%; /* Nút full chiều rộng */
+    background-color: transparent; /* Nền trong suốt */
+    border: 1px solid #4b4b4b; /* Viền xám mỏng */
+    border-radius: 8px; /* Bo góc nhẹ */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển mượt */
+}
+
+/* Hiệu ứng khi rê chuột vào nút trong Sidebar */
+[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #2b2b2b;
+        border-color: #ffffff;
+        color: #ffffff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
