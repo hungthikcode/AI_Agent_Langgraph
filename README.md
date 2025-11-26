@@ -96,7 +96,7 @@ Tạo file `config.json` ở thư mục `connect_SQL` cho database tương ứng
 
 Mô hình không kèm theo repo để giảm dung lượng.
 
-Tải từ Hugging Face:
+Tạo folder `models` trong thư mục dự án và tải từ Hugging Face:
 
 👉 https://huggingface.co/AITeamVN/Vietnamese_Embedding
 
