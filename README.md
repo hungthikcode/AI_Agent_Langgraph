@@ -130,9 +130,9 @@ http://localhost:8501
 
 * Chatbot hỏi đáp tiếng Việt dựa trên RAG
 * Tìm kiếm embedding qua ChromaDB
-* Agent sử dụng nhiều tools (SQL Query, RAG, Lookup...)
+* Agent sử dụng tools RAG
 * Tạo DB từ file CSV câu hỏi thường gặp
-* API dạng REST dễ tích hợp
+
 
 ---
 
