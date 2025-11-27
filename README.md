@@ -103,7 +103,20 @@ Tạo folder `models` trong thư mục dự án và tải từ Hugging Face:
 
 ## 📚 4. Tạo vector database (Chroma)
 
-Nếu bạn muốn xây lại vector DB:
+1. Tạo file `config.json` ở thư mục `create_vecto_db` tương ứng:
+
+
+```
+{
+  "faq_csv_path": "",
+  "db_path": "", # Tên folder chứa model
+  "db_folder": "chroma_db_faqs", # Tạo thêm 1 folder con trong db_path để giúp thao tác xóa
+  "collection_name": "faqs_collection",  # Tên collection trong ChromaDB, mặc định là faqs_collection
+  "local_model_path": "" # Path của file model đã tải
+}
+```
+
+2 Tạo vector DB:
 
 ```bash
 python create_vect_db/create_faq_db.py
