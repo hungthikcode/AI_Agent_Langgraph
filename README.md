@@ -1,15 +1,14 @@
 # 🚀 Chatbot RAG – Vietnamese FAQ Assistant
 
-Đây là dự án **Chatbot RAG (Retrieval-Augmented Generation)** hỗ trợ hỏi–đáp FAQs bằng tiếng Việt. Hệ thống sử dụng:
+Đây là dự án **Chatbot RAG (Retrieval-Augmented Generation)** hỗ trợ hỏi–đáp FAQs bằng tiếng Việt các câu hỏi hành chính công trên cổng dịch vụ công quốc gia (Source: https://dichvucong.gov.vn/p/home/dvc-cau-hoi-pho-bien.html). Hệ thống sử dụng:
 
-* FastAPI (hoặc framework bạn đang sử dụng)
+* LangGraph, LLM API (Gemini)
 * Vector DB: **ChromaDB**
 * Embedding model tiếng Việt (tải từ Hugging Face)
 * Pipeline RAG để trả lời câu hỏi chính xác hơn
 * SQLite để lưu trữ dữ liệu nhỏ
 
 ---
-
 ## 📂 Cấu trúc thư mục
 
 ```
@@ -50,8 +49,7 @@ project/
 ### Clone project
 
 ```bash
-git clone https://github.com/<your-name>/<your-repo>.git
-cd <your-repo>
+git https://github.com/hungthikcode/AI_Agent_Langgraph.git
 ```
 
 ### Tạo môi trường Python
@@ -141,7 +139,7 @@ http://localhost:8501
 
 ## 🤖 6. Tính năng chính
 
-* Chatbot hỏi đáp tiếng Việt dựa trên RAG
+* Chatbot FAQ hỏi đáp liên quan tới thủ tục hành chính công 
 * Tìm kiếm embedding qua ChromaDB
 * Agent sử dụng tools RAG
 * Tạo DB từ file CSV câu hỏi thường gặp
