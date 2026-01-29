@@ -6,6 +6,7 @@ from tools.tool_registry import TOOL_REGISTRY
 import yaml
 import re
 import json
+import os
 from connect_SQL.connect_SQL import connect_sql
 from sqlalchemy import text
 
@@ -15,7 +16,8 @@ def user_input(state: MultiRoleAgentState ) -> str:
 
 
 def _load_base_prompt(state: MultiRoleAgentState ) -> str:
-    path = f"D:/Chatbot_Data4Life/v1/prompt/General_Prompt.docx"
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(os.path.dirname(current_dir), "prompt", "General_Prompt.docxdocker login")
     doc = Document(path)
     prompt_text = "/n".join([p.text for p in doc.paragraphs if p.text.strip()])
     return prompt_text
@@ -34,8 +36,9 @@ def _load_tool_for_role() -> List[Dict[str, Any]]:
             example: "doanh thu Q2 2025 khu vực VN"
         returns: "Danh sách bản ghi phù hợp"
     """
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(os.path.dirname(current_dir), "prompt", "tool.yaml")
 
-    path = f"D:/Chatbot_Data4Life/v1/prompt/tool.yaml"
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f) or {}
