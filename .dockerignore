@@ -1,0 +1,7 @@
+venv/
+.venv/
+.git/
+__pycache__/
+models/      
+.env
+connect_SQL/config.json
