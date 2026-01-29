@@ -12,7 +12,7 @@ class GeminiAnalyzerLLM:
     LLM dùng trong agent_executor_node
     → nhiệm vụ: phân tích câu hỏi, chọn tool, suy luận logic
     """
-    def __init__(self, model_name: str = "gemini-2.0-flash", api_key_env: str = "GOOGLE_API_KEY_1"):
+    def __init__(self, model_name: str = "gemini-2.5-flash", api_key_env: str = "GOOGLE_API_KEY_1"):
         api_key = os.getenv(api_key_env)
         if not api_key:
             raise ValueError(f"❌ Missing API key: {api_key_env}")
@@ -73,7 +73,7 @@ class GeminiAnalyzerLLM:
             f"{example}\n"
             "TRẢ LẠI CHỈ JSON, KHÔNG THÊM BẤT KỲ VĂN BẢN NÀO KHÁC."
         )
-
+        
         # Gọi Gemini (implementation may vary — dùng generate_content như ví dụ trước)
         response = self.model.generate_content(prompt)
 
@@ -90,7 +90,7 @@ class GeminiSynthesizerLLM:
     LLM dùng trong llm_response_synthesizer
     → nhiệm vụ: tổng hợp kết quả từ tool và sinh câu trả lời cuối cùng
     """
-    def __init__(self, model_name: str = "gemini-2.0-flash", api_key_env: str = "GOOGLE_API_KEY_2"):
+    def __init__(self, model_name: str = "gemini-2.5-flash", api_key_env: str = "GOOGLE_API_KEY_2"):
         api_key = os.getenv(api_key_env)
         if not api_key:
             raise ValueError(f"❌ Missing API key: {api_key_env}")
@@ -110,7 +110,7 @@ class GeminiChatParagraphSummarizer:
     LLM dùng để tóm tắt từng cặp hội thoại (user - chatbot)
     """
 
-    def __init__(self, model_name: str = "gemini-2.0-flash", api_key_env: str = "GOOGLE_API_KEY_3"):
+    def __init__(self, model_name: str = "gemini-2.5-flash", api_key_env: str = "GOOGLE_API_KEY_3"):
         api_key = os.getenv(api_key_env)
         if not api_key:
             raise ValueError(f"❌ Missing API key: {api_key_env}")
