@@ -101,8 +101,14 @@ def role_manager(state: MultiRoleAgentState) -> None:
     state["base_prompt"] =  base_prompt
 
     conversation_history = _load_memory(session_id=state.get("session_id", ""))
-    summarizer = GeminiChatParagraphSummarizer()
-    summarise_conversation_history = summarizer.summarize_each_exchange(chat_json=conversation_history)
+
+    summarise_conversation_history = ""
+    if conversation_history.strip():
+        summarizer = GeminiChatParagraphSummarizer()
+        summarise_conversation_history = summarizer.summarize_each_exchange(
+            chat_json=conversation_history
+        )
+
     state["conversation_history"] = summarise_conversation_history  
 
     # 3. Xây dựng template để chèn memory vào prompt
@@ -213,6 +219,7 @@ def task_analyzer(state: MultiRoleAgentState) -> None:
     - Reads: state['user_question'], state['base_prompt'], state['role_tools']
     - Updates: state['llm_analysis'] (raw text) and state['required_tools'] (List[Dict])
     """
+ 
     user_question = state.get("user_input")
     base_prompt = state.get("full_prompt")
     role_tools_raw = state.get("tools", [])
