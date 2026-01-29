@@ -1,12 +1,41 @@
+<div align="center">
+
 # 🚀 Chatbot RAG – Vietnamese FAQ Assistant
 
-Đây là dự án **Chatbot RAG (Retrieval-Augmented Generation)** hỗ trợ hỏi–đáp FAQs bằng tiếng Việt các câu hỏi hành chính công trên cổng dịch vụ công quốc gia (Source: https://dichvucong.gov.vn/p/home/dvc-cau-hoi-pho-bien.html). Hệ thống sử dụng:
+![Typing SVG](https://readme-typing-svg.demolab.com?center=true&width=600&lines=Vietnamese+RAG+Chatbot;LangGraph+%7C+ChromaDB+%7C+FastAPI;Built+for+Public+Service+FAQs)
 
-* LangGraph, LLM API (Gemini)
-* Vector DB: **ChromaDB**
-* Embedding model tiếng Việt (tải từ Hugging Face)
-* Pipeline RAG để trả lời câu hỏi chính xác hơn
-* SQLite để lưu trữ dữ liệu nhỏ
+
+> 🤖 Trợ lý hỏi–đáp tiếng Việt dựa trên **Retrieval-Augmented Generation (RAG)**  
+> 📚 Dữ liệu từ Cổng Dịch vụ công Quốc gia
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![RAG](https://img.shields.io/badge/RAG-Enabled-success)
+![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-purple)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+</div>
+
+---
+
+## 🧠 Giới thiệu
+
+Đây là dự án **Chatbot RAG** hỗ trợ trả lời **các câu hỏi hành chính công bằng tiếng Việt**,  
+sử dụng kiến trúc **RAG (Retrieval-Augmented Generation)** để tăng độ chính xác và giảm hallucination.
+
+📌 **Nguồn dữ liệu**:  
+🔗 https://dichvucong.gov.vn/p/home/dvc-cau-hoi-pho-bien.html
+
+---
+
+## ⚙️ Công nghệ sử dụng
+
+- 🧩 **LangGraph** – điều phối agent, state và graph
+- 🔌 **LLM API (Gemini)**
+- 🧠 **Embedding tiếng Việt** (Hugging Face)
+- 🗂 **Vector Database**: ChromaDB
+- 🔍 **RAG Pipeline** cho truy vấn chính xác hơn
+- 💾 **SQLite** cho lưu trữ dữ liệu nhẹ
+
 
 ---
 ## 📂 Cấu trúc thư mục
