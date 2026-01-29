@@ -4,17 +4,18 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 from functools import lru_cache
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Load mo hinh embedding
 @lru_cache(maxsize=1)
 def load_model():
-    local_model_path = r"D:/Chatbot_Data4Life/v1/models/Vietnamese_Embedding"
+    local_model_path = os.path.join("models", "Vietnamese_Embedding")
     model = SentenceTransformer(local_model_path)
     return model
 
 @lru_cache(maxsize=1)
 def connect_chroma_db():
     # 📂 Đường dẫn tới thư mục chứa chroma.sqlite3
-    persist_dir = r"D:/Chatbot_Data4Life/v1/chroma_db/chroma_db_faqs"  
+    persist_dir = os.path.join("chroma_db", "chroma_db_faqs")  
 
     # Kết nối ChromaDB
     client = chromadb.PersistentClient(path=persist_dir)
