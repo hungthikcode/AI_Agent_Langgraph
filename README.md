@@ -8,7 +8,7 @@
 > 🤖 Trợ lý hỏi–đáp tiếng Việt dựa trên **Retrieval-Augmented Generation (RAG)**  
 > 📚 Dữ liệu từ Cổng Dịch vụ công Quốc gia
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![Python](https://img.shields.io/badge/Python-3.12+-blue)
 ![RAG](https://img.shields.io/badge/RAG-Enabled-success)
 ![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-purple)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
