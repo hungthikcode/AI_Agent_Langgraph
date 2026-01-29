@@ -1,10 +1,10 @@
 import time
 import streamlit as st
 import requests  
-import json
+import os
 
 # URL của Backend API 
-API_URL = "http://127.0.0.1:8000" 
+API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 def local_css(file_name):
     try:
