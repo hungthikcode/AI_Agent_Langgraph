@@ -27,14 +27,23 @@ sử dụng kiến trúc **RAG (Retrieval-Augmented Generation)** để tăng đ
 
 ---
 
+## 🏗️ Kiến trúc hệ thống
+
+Dự án sử dụng mô hình **Client-Server**:
+1.  **Backend (FastAPI):** Điều phối bộ não LangGraph, quản lý các Agent, truy vấn ChromaDB và SQL Server.
+2.  **Frontend (Streamlit):** Giao diện người dùng thân thiện, giao tiếp với Backend qua REST API.
+3.  **Database:** SQL Server (Lưu lịch sử chat) & ChromaDB (Lưu Vector dữ liệu FAQ).
+
+---
+
 ## ⚙️ Công nghệ sử dụng
 
-- 🧩 **LangGraph** – điều phối agent, state và graph
-- 🔌 **LLM API (Gemini)**
-- 🧠 **Embedding tiếng Việt** (Hugging Face)
-- 🗂 **Vector Database**: ChromaDB
-- 🔍 **RAG Pipeline** cho truy vấn chính xác hơn
-- 💾 **SQLite** cho lưu trữ dữ liệu nhẹ
+- **LangGraph** – điều phối agent, state và graph
+- **LLM API (Gemini)**
+- **Embedding tiếng Việt** (Hugging Face)
+- **Vector Database**: ChromaDB
+- **RAG Pipeline** cho truy vấn chính xác hơn
+- **SQLite** cho lưu trữ dữ liệu nhẹ
 
 
 ---
@@ -74,7 +83,28 @@ project/
 
 ---
 
-## 🔧 1. Cài đặt môi trường
+## 🐳 CÁCH 1: TRIỂN KHAI NHANH VỚI DOCKER (Khuyên dùng)
+
+Bạn không cần cài đặt Python hay Driver SQL Server, chỉ cần Docker Desktop.
+
+### 1. Chuẩn bị file cấu hình
+- Tạo `.env` ở thư mục gốc: `GOOGLE_API_KEY=your_key_here`
+- Tạo `connect_SQL/config.json` (Dùng IP `host.docker.internal` nếu SQL Server chạy trên máy cùng máy vật lý).
+- Đảm bảo folder `models/Vietnamese_Embedding` đã có sẵn file model.
+
+### 2. Khởi chạy
+Chỉ cần chạy một lệnh duy nhất:
+```bash
+docker-compose up -d
+```
+Docker sẽ tự động tải các Image `txhungg/langgraph-chatbot` và `txhungg/langgraph-frontend` về và khởi chạy.
+
+- **UI:** `http://localhost:8501`
+- **API Docs:** `http://localhost:8000/docs`
+
+---
+
+## 🔧 CÁCH 2: CÀI ĐẶT THỦ CÔNG (Dành cho Dev)
 
 ### Clone project
 
@@ -154,15 +184,12 @@ python create_vect_db/create_faq_db.py
 
 ## ▶️ 5. Chạy ứng dụng
 
-```bash
-streamlit run app.py
-```
+**Khởi chạy song song**
 
-Ứng dụng chạy tại:
+Cần mở 2 terminal:
+- **Terminal 1 (Backend):** `python api.py`
+- **Terminal 2 (Frontend):** `streamlit run app.py`
 
-```
-http://localhost:8501
-```
 
 ---
 
