@@ -17,7 +17,7 @@ def user_input(state: MultiRoleAgentState ) -> str:
 
 def _load_base_prompt(state: MultiRoleAgentState ) -> str:
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(os.path.dirname(current_dir), "prompt", "General_Prompt.docxdocker login")
+    path = os.path.join(os.path.dirname(current_dir), "prompt", "General_Prompt.docx")
     doc = Document(path)
     prompt_text = "/n".join([p.text for p in doc.paragraphs if p.text.strip()])
     return prompt_text
