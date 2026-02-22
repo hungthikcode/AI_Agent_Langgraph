@@ -115,7 +115,6 @@ def role_manager(state: MultiRoleAgentState) -> None:
     state["conversation_history"] = summarise_conversation_history  
 
     # 3. Xây dựng template để chèn memory vào prompt
-    # Đây là cách bạn "chèn vào prompt"
     final_prompt_template = (f"""
         {base_prompt} 
         ---
@@ -226,7 +225,7 @@ def task_analyzer(state: MultiRoleAgentState) -> None:
     user_question = state.get("user_input")
     base_prompt = state.get("full_prompt")
     role_tools_raw = state.get("tools", [])
-    #print(f"state: {state}")
+
 
     if not user_question or not base_prompt:
         raise ValueError("task_analyzer: state thiếu user_question hoặc base_prompt")
