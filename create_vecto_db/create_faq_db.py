@@ -9,10 +9,7 @@ import chromadb
 import unicodedata
 import time
 
-# ==============================================================================
-# PHẦN 1: CÁC HÀM TIỆN ÍCH (TƯƠNG TỰ CODE MẪU CỦA BẠN)
-# ==============================================================================
-
+# Sửa lại đường dẫn mặc định cho logger để phù hợp với cấu trúc thư mục của bạn
 def setup_logger(log_dir: str = r"D:/Chatbot_Data4Life/v1/create_vecto_db/logs/logs"):
     """Khởi tạo logger để ghi lại quá trình xử lý."""
     os.makedirs(log_dir, exist_ok=True)
@@ -33,6 +30,7 @@ def setup_logger(log_dir: str = r"D:/Chatbot_Data4Life/v1/create_vecto_db/logs/l
     logging.info("=== Logger initialized ===")
     return logging
 
+# Sửa lại đường dẫn mặc định cho mô hình embedding để phù hợp với cấu trúc thư mục của bạn
 def load_embedding_model(model_path: str) -> SentenceTransformer:
     """Tải mô hình embedding từ một đường dẫn local."""
     try:
@@ -58,9 +56,6 @@ def clear_chroma_db_folder(db_path: str, db_folder: str):
     logging.info(f"Đã tạo thư mục DB mới: {full_path}")
 
 
-# ==============================================================================
-# PHẦN 2: CÁC HÀM XỬ LÝ DỮ LIỆU FAQ
-# ==============================================================================
 
 def load_and_prepare_faq_data(csv_path: str) -> pd.DataFrame:
     """Đọc file CSV và chuẩn bị dữ liệu."""
@@ -68,8 +63,7 @@ def load_and_prepare_faq_data(csv_path: str) -> pd.DataFrame:
         logging.info(f"Đang đọc dữ liệu từ: {csv_path}")
         df = pd.read_csv(csv_path)
 
-        # --- Tiền xử lý dữ liệu ---
-        # 1. Kiểm tra các cột cần thiết
+        # 1. Kiểm tra sự tồn tại của các cột bắt buộc
         required_columns = ['id', 'title', 'answer_text']
         if not all(col in df.columns for col in required_columns):
             logging.error(f"File CSV thiếu các cột bắt buộc: {required_columns}")
@@ -134,14 +128,14 @@ def store_in_chromadb(
         # Sử dụng get_or_create để tránh lỗi nếu collection đã tồn tại
         collection = client.get_or_create_collection(
             name=collection_name,
-            metadata={"hnsw:space": "cosine"} # cosine similarity phù hợp cho text
+            metadata={"hnsw:space": "cosine"} 
         )
         logging.info(f"Sử dụng/Tạo collection '{collection_name}' tại '{full_db_path}'")
 
         # Chuẩn bị dữ liệu cho ChromaDB
         ids = faq_df["id"].tolist()
-        documents = faq_df["title"].tolist() # Nội dung được embed
-        metadatas = faq_df.to_dict(orient='records') # Metadata là toàn bộ thông tin của dòng
+        documents = faq_df["title"].tolist() 
+        metadatas = faq_df.to_dict(orient='records') 
 
         # Sử dụng upsert để thêm mới hoặc cập nhật nếu ID đã tồn tại
         collection.upsert(
@@ -158,15 +152,11 @@ def store_in_chromadb(
         logging.error(f"Lỗi khi lưu trữ vào ChromaDB: {e}")
 
 
-# ==============================================================================
-# PHẦN 3: LUỒNG THỰC THI CHÍNH
-# ==============================================================================
-
 if __name__ == "__main__":
     # Khởi tạo logger
     logger = setup_logger()
 
-    # Tải cấu hình
+    # Sửa lại đường dẫn mặc định cho file config để phù hợp với cấu trúc thư mục của bạn
     try:
         CONFIG_PATH = "D:/Chatbot_Data4Life/v1/create_vecto_db/config.json"
         with open(CONFIG_PATH, "r", encoding="utf-8") as f:
@@ -182,25 +172,19 @@ if __name__ == "__main__":
     COLLECTION_NAME = config["collection_name"]
     LOCAL_MODEL_PATH = config["local_model_path"]
 
-    # --- Tùy chọn: Xóa DB cũ trước khi tạo mới ---
-    # Bỏ comment dòng dưới nếu bạn muốn tạo lại DB từ đầu mỗi lần chạy
-    # clear_chroma_db_folder(DB_PATH, DB_FOLDER)
-
     # 1. Tải dữ liệu từ CSV
     faq_dataframe = load_and_prepare_faq_data(FAQ_CSV_PATH)
 
     if faq_dataframe.empty:
         logger.error("Không có dữ liệu để xử lý. Dừng chương trình.")
     else:
-        # 2. Tải mô hình embedding
         model = load_embedding_model(LOCAL_MODEL_PATH)
 
-        # 3. Tạo embeddings từ cột 'title'
+        # 2. Tạo embeddings từ cột 'title'
         titles_to_embed = faq_dataframe['title'].tolist()
         faq_embeddings = create_faq_embeddings(model, titles_to_embed)
 
         if faq_embeddings:
-            # 4. Lưu trữ vào ChromaDB
             store_in_chromadb(
                 db_path=DB_PATH,
                 db_folder=DB_FOLDER,
